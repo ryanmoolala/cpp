@@ -23,7 +23,13 @@ Graph createGraph(int size) {
     std::uniform_int_distribution<> dist(1, 100);        // weight
     std::uniform_int_distribution<> node(0, size - 1);   // node index
 
-   xd
+    // ✅ Guarantee at least one path from 0 to size-1
+    vector<int> path;
+    for (int i = 1; i < size - 1; ++i) {
+        path.push_back(i);
+    }
+    std::shuffle(path.begin(), path.end(), gen);
+
     int prev = 0;
     for (int i = 0; i < path.size(); ++i) {
         addEdge(graph, prev, path[i], dist(gen));
