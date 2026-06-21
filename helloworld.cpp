@@ -12,7 +12,7 @@ void doubleInputNumber() {
 }
 
 void assignments() {
-	int var1 { 55 };
+	int var1 { 53335 };
 	std::cout << var1;
 }
 
