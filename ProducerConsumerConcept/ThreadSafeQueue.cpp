@@ -53,7 +53,7 @@ public:
         uniform_int_distribution<int> dist(0, 1000);
         while (isRunning) {
             registeredQueue->push(dist(rng));
-            this_thread::sleep_for(chrono::milliseconds(10));
+            this_thread::sleep_for(chrono::milliseconds(1));
         }
     }
     void cancel() {
@@ -77,8 +77,11 @@ public:
         subscribedQueue = &q;
     }
     void listen() {
+        mt19937 rng(random_device{}());
+        uniform_int_distribution<int> dist(1, 5);
         while (isListening && subscribedQueue != nullptr) {
             cout << ("ID: " + std::to_string(id) + " " + std::to_string(subscribedQueue->pop()) + "\n");
+            this_thread::sleep_for(chrono::seconds(dist(rng)));
         }
     }
     void cancel() {
